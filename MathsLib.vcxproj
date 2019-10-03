@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MathsLib\AABB.h" />
     <ClInclude Include="MathsLib\Assertion.h" />
     <ClInclude Include="MathsLib\BrownianTree.h" />
     <ClInclude Include="MathsLib\FastFloat.h" />
@@ -30,11 +31,13 @@
     <ClInclude Include="MathsLib\Plane.h" />
     <ClInclude Include="MathsLib\Point.h" />
     <ClInclude Include="MathsLib\Quaternion.h" />
+    <ClInclude Include="MathsLib\Ray.h" />
     <ClInclude Include="MathsLib\Vector2.h" />
     <ClInclude Include="MathsLib\Vector3.h" />
     <ClInclude Include="MathsLib\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MathsLib\AABB.cpp" />
     <ClCompile Include="MathsLib\BrownianTree.cpp" />
     <ClCompile Include="MathsLib\FastFloat.cpp" />
     <ClCompile Include="MathsLib\Maths.cpp" />
@@ -43,6 +46,7 @@
     <ClCompile Include="MathsLib\Plane.cpp" />
     <ClCompile Include="MathsLib\Point.cpp" />
     <ClCompile Include="MathsLib\Quaternion.cpp" />
+    <ClCompile Include="MathsLib\Ray.cpp" />
     <ClCompile Include="MathsLib\Vector2.cpp" />
     <ClCompile Include="MathsLib\Vector3.cpp" />
     <ClCompile Include="MathsLib\Vector4.cpp" />

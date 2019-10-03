@@ -2,7 +2,7 @@
 #include "Point.h"
 
 
-namespace nGENE
+namespace MathsLib
 {
 	AABB::AABB()
 	{
@@ -13,11 +13,6 @@ namespace nGENE
 		m_vecMaximum(_max)
 	{
 		computeCentre();
-	}
-
-	AABB::AABB(VertexBuffer& _vb)
-	{
-		construct(_vb);
 	}
 
 	AABB::~AABB()
@@ -45,207 +40,6 @@ namespace nGENE
 	void AABB::setMaximum(const Vector3& _max)
 	{
 		m_vecMaximum = _max;
-		computeCentre();
-	}
-
-	void AABB::construct(VertexBuffer& _vb)
-	{
-		unsigned int nCount = _vb.getVerticesNum();
-
-		// VertexBuffer contains no vertices, so exit
-		if(!nCount)
-			return;
-
-		VERTEX_ELEMENT* pElement = _vb.getDesc().vertexDeclaration->getVertexElement(VEU_POSITION);
-		// VertexBuffer contains no position data, so exit
-		if(!pElement)
-			return;
-		dword offset = pElement->offset;
-
-		byte* pVertices;
-		_vb.lock(0, nCount, (void**)&pVertices);
-		construct(pVertices,
-			nCount,
-			_vb.getDesc().vertexSize,
-			offset);
-		_vb.unlock();
-	}
-
-	void AABB::construct(VertexBuffer* _vb)
-	{
-		unsigned int nCount = _vb->getVerticesNum();
-
-		// VertexBuffer contains no vertices, so exit
-		if(!nCount)
-			return;
-
-		VERTEX_ELEMENT* pElement = _vb->getDesc().vertexDeclaration->getVertexElement(VEU_POSITION);
-		// VertexBuffer contains no position data, so exit
-		if(!pElement)
-			return;
-		dword offset = pElement->offset;
-
-		byte* pVertices;
-		_vb->lock(0, nCount, (void**)&pVertices);
-			construct(pVertices,
-					  nCount,
-					  _vb->getDesc().vertexSize,
-					  offset);
-		_vb->unlock();
-	}
-
-	void AABB::construct(void* _vertices, unsigned int _count, unsigned int _size, unsigned int _offset)
-	{
-		Vector3 vMin(1e9, 1e9, 1e9);
-		Vector3 vMax(-1e9, -1e9, -1e9);
-		Vector3 vCurrent;
-
-		// Find the bounding points
-		byte* pVertices = (byte*)_vertices;
-		for(unsigned int i = 0; i < _count; ++i)
-		{
-			memcpy(&vCurrent, pVertices + i * _size + _offset, sizeof(Vector3));
-
-
-			if(vCurrent.x < vMin.x)
-				vMin.x = vCurrent.x;
-			else if(vCurrent.x > vMax.x)
-				vMax.x = vCurrent.x;
-
-			if(vCurrent.y < vMin.y)
-				vMin.y = vCurrent.y;
-			else if(vCurrent.y > vMax.y)
-				vMax.y = vCurrent.y;
-
-			if(vCurrent.z < vMin.z)
-				vMin.z = vCurrent.z;
-			else if(vCurrent.z > vMax.z)
-				vMax.z = vCurrent.z;
-		}
-
-
-		// Set the class members
-		m_vecMinimum = vMin;
-		m_vecMaximum = vMax;
-		computeCentre();
-	}
-
-	void AABB::construct(OBB& _box)
-	{
-		/// @todo Matrix3x3 * Vector3 multiplication would be faster
-		Vector4 temp(_box.getCentre());
-		Matrix4x4& matBox = _box.getTransform();
-		temp = matBox * temp;
-		float* fCoords = matBox[3];
-		Vector3 vecCentre(fCoords[0], fCoords[1], fCoords[2]);
-		m_vecMinimum =
-		m_vecMaximum = vecCentre;
-
-		Vector3 min = _box.getMinimum();
-		Vector3 max = _box.getMaximum();
-
-
-		// Find out new AABB size
-		if(matBox._m11 > 0.0f)
-		{
-			m_vecMinimum.x += matBox._m11 * min.x;
-			m_vecMaximum.x += matBox._m11 * max.x;
-		}
-		else
-		{
-			m_vecMinimum.x += matBox._m11 * max.x;
-			m_vecMaximum.x += matBox._m11 * min.x;
-		}
-
-		if(matBox._m12 > 0.0f)
-		{
-			m_vecMinimum.y += matBox._m12 * min.x;
-			m_vecMaximum.y += matBox._m12 * max.x;
-		}
-		else
-		{
-			m_vecMinimum.y += matBox._m12 * max.x;
-			m_vecMaximum.y += matBox._m12 * min.x;
-		}
-
-		if(matBox._m13 > 0.0f)
-		{
-			m_vecMinimum.z += matBox._m13 * min.x;
-			m_vecMaximum.z += matBox._m13 * max.x;
-		}
-		else
-		{
-			m_vecMinimum.z += matBox._m13 * max.x;
-			m_vecMaximum.z += matBox._m13 * min.x;
-		}
-
-		if(matBox._m21 > 0.0f)
-		{
-			m_vecMinimum.x += matBox._m21 * min.y;
-			m_vecMaximum.x += matBox._m21 * max.y;
-		}
-		else
-		{
-			m_vecMinimum.x += matBox._m21 * max.y;
-			m_vecMaximum.x += matBox._m21 * min.y;
-		}
-
-		if(matBox._m22 > 0.0f)
-		{
-			m_vecMinimum.y += matBox._m22 * min.y;
-			m_vecMaximum.y += matBox._m22 * max.y;
-		}
-		else
-		{
-			m_vecMinimum.y += matBox._m22 * max.y;
-			m_vecMaximum.y += matBox._m22 * min.y;
-		}
-
-		if(matBox._m23 > 0.0f)
-		{
-			m_vecMinimum.z += matBox._m23 * min.y;
-			m_vecMaximum.z += matBox._m23 * max.y;
-		}
-		else
-		{
-			m_vecMinimum.z += matBox._m23 * max.y;
-			m_vecMaximum.z += matBox._m23 * min.y;
-		}
-
-		if(matBox._m31 > 0.0f)
-		{
-			m_vecMinimum.x += matBox._m31 * min.z;
-			m_vecMaximum.x += matBox._m31 * max.z;
-		}
-		else
-		{
-			m_vecMinimum.x += matBox._m31 * max.z;
-			m_vecMaximum.x += matBox._m31 * min.z;
-		}
-
-		if(matBox._m32 > 0.0f)
-		{
-			m_vecMinimum.y += matBox._m32 * min.z;
-			m_vecMaximum.y += matBox._m32 * max.z;
-		}
-		else
-		{
-			m_vecMinimum.y += matBox._m32 * max.z;
-			m_vecMaximum.y += matBox._m32 * min.z;
-		}
-
-		if(matBox._m33 > 0.0f)
-		{
-			m_vecMinimum.z += matBox._m33 * min.z;
-			m_vecMaximum.z += matBox._m33 * max.z;
-		}
-		else
-		{
-			m_vecMinimum.z += matBox._m33 * max.z;
-			m_vecMaximum.z += matBox._m33 * min.z;
-		}
-
-		// Recompute centre point
 		computeCentre();
 	}
 
@@ -299,6 +93,38 @@ namespace nGENE
 		}
 
 		return Maths::fsqrt(dist);
+	}
+
+	AABB& AABB::operator+=(const AABB& rhs)
+	{
+		m_vecMinimum.x = (m_vecMinimum.x <= rhs.m_vecMinimum.x ? m_vecMinimum.x : rhs.m_vecMinimum.x);
+		m_vecMinimum.y = (m_vecMinimum.y <= rhs.m_vecMinimum.y ? m_vecMinimum.y : rhs.m_vecMinimum.y);
+		m_vecMinimum.z = (m_vecMinimum.z <= rhs.m_vecMinimum.z ? m_vecMinimum.z : rhs.m_vecMinimum.z);
+
+		m_vecMaximum.x = (m_vecMaximum.x >= rhs.m_vecMaximum.x ? m_vecMaximum.x : rhs.m_vecMaximum.x);
+		m_vecMaximum.y = (m_vecMaximum.y >= rhs.m_vecMaximum.y ? m_vecMaximum.y : rhs.m_vecMaximum.y);
+		m_vecMaximum.z = (m_vecMaximum.z >= rhs.m_vecMaximum.z ? m_vecMaximum.z : rhs.m_vecMaximum.z);
+
+		computeCentre();
+
+		return (*this);
+	}
+
+	const AABB operator+(const AABB& lhs, const AABB& rhs)
+	{
+		AABB result;
+
+		result.m_vecMinimum.x = (lhs.m_vecMinimum.x <= rhs.m_vecMinimum.x ? lhs.m_vecMinimum.x : rhs.m_vecMinimum.x);
+		result.m_vecMinimum.y = (lhs.m_vecMinimum.y <= rhs.m_vecMinimum.y ? lhs.m_vecMinimum.y : rhs.m_vecMinimum.y);
+		result.m_vecMinimum.z = (lhs.m_vecMinimum.z <= rhs.m_vecMinimum.z ? lhs.m_vecMinimum.z : rhs.m_vecMinimum.z);
+
+		result.m_vecMaximum.x = (lhs.m_vecMaximum.x >= rhs.m_vecMaximum.x ? lhs.m_vecMaximum.x : rhs.m_vecMaximum.x);
+		result.m_vecMaximum.y = (lhs.m_vecMaximum.y >= rhs.m_vecMaximum.y ? lhs.m_vecMaximum.y : rhs.m_vecMaximum.y);
+		result.m_vecMaximum.z = (lhs.m_vecMaximum.z >= rhs.m_vecMaximum.z ? lhs.m_vecMaximum.z : rhs.m_vecMaximum.z);
+
+		result.computeCentre();
+
+		return result;
 	}
 
 }
