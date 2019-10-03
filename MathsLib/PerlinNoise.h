@@ -7,7 +7,7 @@ namespace MathsLib
 {
 	/** This class defines n-dimensional Perlin noise.
 		@remarks
-			To achieve "multi-dimensolity" of the noise template
+			To achieve "multi-dimensionality" of the noise template
 			recusion is used extensively.
 	*/
 	template <unsigned int N=1>
