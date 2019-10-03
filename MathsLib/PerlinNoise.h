@@ -3,6 +3,9 @@
 #define __INC_PERLINNOISE_H_
 
 
+#include <vector>
+
+
 namespace MathsLib
 {
 	/** This class defines n-dimensional Perlin noise.
@@ -55,12 +58,12 @@ namespace MathsLib
 		PerlinNoise <1>& operator=(const PerlinNoise <1>& rhs);
 
 		void setup();
-		double smooth(vector <unsigned int>& _indices);
+		double smooth(std::vector <unsigned int>& _indices);
 
 		void resize(unsigned int _size);
 		unsigned int getSize() const;
 
-		float& get(vector <unsigned int>& _indices);
+		float& get(std::vector <unsigned int>& _indices);
 
 		float& operator[](int _index);
 		const float& operator[](int _index) const;
