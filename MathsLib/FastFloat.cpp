@@ -6,44 +6,36 @@ namespace MathsLib
 {
 	// There is quite a lot of static members in this class
 	// so we need to initialize them.
-	unsigned int FastFloat::s_knSinTableSize = 512;
 	int FastFloat::s_nMask = 511;
-	float* FastFloat::s_pSinTable = NULL;
+	std::vector <float> FastFloat::s_pSinTable;
 	float FastFloat::s_fModifier = 511.0f / (2.0f * Maths::PI);
 	float FastFloat::s_fQuarter = 128.0f;
 	const float FastFloat::FTOIBIAS = 12582912.0f;
 	
 
-	FastFloat::FastFloat(unsigned int _sinTableSize)
+	FastFloat::FastFloat(size_t _sinTableSize)
 	{
-		s_knSinTableSize = _sinTableSize;
-		s_nMask = s_knSinTableSize - 1;
-		s_fModifier = static_cast<float>((s_knSinTableSize) / (2.0f * Maths::PI));
-		s_fQuarter = static_cast<float>((s_knSinTableSize) * 0.25f);
+		s_pSinTable.resize(_sinTableSize);
+		s_nMask = _sinTableSize - 1;
+		s_fModifier = static_cast<float>((_sinTableSize) / (2.0f * Maths::PI));
+		s_fQuarter = static_cast<float>((_sinTableSize) * 0.25f);
 
-		initSinTable();
+		initLookupTable();
 	}
 
 	FastFloat::~FastFloat()
 	{
-		cleanup();
 	}
 
-	void FastFloat::initSinTable()
+	void FastFloat::initLookupTable()
 	{
-		s_pSinTable = new float[s_knSinTableSize];
-		for(unsigned int i = 0; i < s_knSinTableSize; ++i)
-			s_pSinTable[i] = (float)sin((double)i * 2.0 * Maths::PI / double(s_knSinTableSize));
+		size_t tableSize = s_pSinTable.size();
+		for(unsigned int i = 0; i < tableSize; ++i)
+			s_pSinTable[i] = (float)sin((double)i * 2.0 * Maths::PI / double(tableSize));
 	}
 
 	unsigned int FastFloat::getSinTableSize()
 	{
-		return s_knSinTableSize;
+		return s_pSinTable.size();
 	}
-
-	void FastFloat::cleanup()
-	{
-		delete[] s_pSinTable;
-	}
-
 }

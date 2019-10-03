@@ -31,7 +31,7 @@ namespace MathsLib
 				speak DLA terminology - walkers to put.
 			@returns
 				bool* dynamically allocated array. It is client
-				responsibility to free this. NULL is returned if no
+				responsibility to free this. nullptr is returned if no
 				_seeds where specified (i.e. vector is empty).
 		*/
 		bool* operator()(const std::vector <TREE_SEED>& _seeds, size_t _width=256, size_t _height=256,

@@ -8,7 +8,7 @@ namespace MathsLib
 	{
 		// If no seeds are defined, return NULL
 		if(!_seeds.size())
-			return NULL;
+			return nullptr;
 
 		int i, j, x, y, xNew, yNew;
 		bool found;

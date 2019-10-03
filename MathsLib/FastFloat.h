@@ -3,6 +3,9 @@
 #define __INC_FASTFLOAT_H_
 
 
+#include <vector>
+
+
 namespace MathsLib
 {
 	/** This class speed up some operations on floating
@@ -18,8 +21,8 @@ namespace MathsLib
 			float f;
 		} INT_OR_FLOAT;
 
-		static unsigned int s_knSinTableSize;			///< Size of the sine values table
-		static float* s_pSinTable;				///< Lookup table for sine and cosine
+
+		static std::vector<float> s_pSinTable;			///< Lookup table for sine and cosine
 		static float s_fModifier;
 		static float s_fQuarter;
 		static int s_nMask;
@@ -33,11 +36,10 @@ namespace MathsLib
 				Using sine/cosine table version is faster than calling
 				std sinf and cosf functions but results are less accurate.
 		*/
-		void initSinTable();
-		void cleanup();
+		void initLookupTable();
 
 	public:
-		FastFloat(unsigned int _sinTableSize=512);
+		FastFloat(size_t _sinTableSize=512);
 		~FastFloat();
 
 		/** Converts float to integer.
