@@ -17,7 +17,7 @@ namespace MathsLib
 	const Plane Plane::NEGATIVE_UNIT_Z(0.0f, 0.0f, -1.0f, 0.0f);
 
 
-	Plane::Plane()
+	Plane::Plane() : D(0.0f)
 	{
 	}
 

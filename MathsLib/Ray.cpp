@@ -7,7 +7,7 @@
 
 namespace MathsLib
 {
-	Ray::Ray()
+	Ray::Ray(): m_fTMin(1e9)
 	{
 	}
 
