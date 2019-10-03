@@ -34,8 +34,8 @@ namespace MathsLib
 				responsibility to free this. NULL is returned if no
 				_seeds where specified (i.e. vector is empty).
 		*/
-		bool* operator()(const std::vector <TREE_SEED>& _seeds, unsigned int _width=256, unsigned int _height=256,
-			unsigned int _iterations=1000);
+		bool* operator()(const std::vector <TREE_SEED>& _seeds, size_t _width=256, size_t _height=256,
+			size_t _iterations=1000);
 	};
 }
 

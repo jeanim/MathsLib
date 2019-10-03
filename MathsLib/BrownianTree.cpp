@@ -3,8 +3,8 @@
 
 namespace MathsLib
 {
-	bool* BrownianTree::operator()(const std::vector <TREE_SEED>& _seeds, unsigned int _width, unsigned int _height,
-		unsigned int _iterations)
+	bool* BrownianTree::operator()(const std::vector <TREE_SEED>& _seeds, size_t _width, size_t _height,
+		size_t _iterations)
 	{
 		// If no seeds are defined, return NULL
 		if(!_seeds.size())
@@ -13,14 +13,15 @@ namespace MathsLib
 		int i, j, x, y, xNew, yNew;
 		bool found;
 
-		bool* pData = new bool[_width * _height];
-		memset(pData, false, sizeof(bool) * _width * _height);
+		size_t arrSize = _width * _height;
+		bool* pData = new bool[arrSize];
+		memset(pData, false, sizeof(bool) * arrSize);
 
 		// Put starting seeds
-		for(unsigned int k = 0; k < _seeds.size(); ++k)
+		for(size_t k = 0; k < _seeds.size(); ++k)
 			pData[_seeds[k].second * _width + _seeds[k].first] = true;
 
-		for(unsigned int n = 0; n < _iterations; ++n)
+		for(size_t n = 0; n < _iterations; ++n)
 		{
 			// Put new walker
 			x = rand() % (_width - 2) + 1;
@@ -58,7 +59,8 @@ namespace MathsLib
 					break;
 			}
 			
-			pData[y * _width + x] = true;
+			if(y * _width + x < arrSize)
+				pData[y * _width + x] = true;
 		}
 
 		return pData;
