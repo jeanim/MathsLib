@@ -167,6 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Tests\TestMatrix3x3.cpp" />
+    <ClCompile Include="Tests\TestPerlinNoise.cpp" />
     <ClCompile Include="Tests\TestsMaths.cpp" />
     <ClCompile Include="Tests\TestVector2.cpp" />
     <ClCompile Include="Tests\TestVector3.cpp" />

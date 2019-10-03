@@ -31,11 +31,11 @@ namespace MathsLib
 
 		/// Setups perlin noise.
 		void setup();
-		double smooth(vector <unsigned int>& _indices);
-		float& get(vector <unsigned int>& _indices);
+		double smooth(std::vector <unsigned int>& _indices);
+		float& get(std::vector <unsigned int>& _indices);
 
 		void resize(unsigned int _size);
-		unsigned int getSize() const;
+		unsigned int size() const;
 
 		PerlinNoise <N-1>& operator[](int _index);
 		const PerlinNoise <N-1>& operator[](int _index) const;
@@ -61,7 +61,7 @@ namespace MathsLib
 		double smooth(std::vector <unsigned int>& _indices);
 
 		void resize(unsigned int _size);
-		unsigned int getSize() const;
+		unsigned int size() const;
 
 		float& get(std::vector <unsigned int>& _indices);
 
@@ -129,7 +129,7 @@ namespace MathsLib
 	}
 
 	template <unsigned int N>
-	unsigned int PerlinNoise <N>::getSize() const
+	unsigned int PerlinNoise <N>::size() const
 	{
 		return m_nSize;
 	}
@@ -142,7 +142,7 @@ namespace MathsLib
 	}
 
 	template <unsigned int N>
-	double PerlinNoise <N>::smooth(vector <unsigned int>& _indices)
+	double PerlinNoise <N>::smooth(std::vector <unsigned int>& _indices)
 	{
 		unsigned int index = _indices.front();
 		_indices.erase(_indices.begin());
@@ -159,7 +159,7 @@ namespace MathsLib
 	}
 
 	template <unsigned int N>
-	float& PerlinNoise <N>::get(vector <unsigned int>& _indices)
+	float& PerlinNoise <N>::get(std::vector <unsigned int>& _indices)
 	{
 		unsigned int index = _indices.front();
 		_indices.erase(_indices.begin());
@@ -196,7 +196,7 @@ namespace MathsLib
 
 	inline PerlinNoise <1>::~PerlinNoise()
 	{
-		NGENE_DELETE_ARRAY(m_pElements);
+		delete[] m_pElements;
 	}
 
 	inline PerlinNoise <1>& PerlinNoise <1>::operator=(const PerlinNoise <1>& rhs)
@@ -229,7 +229,7 @@ namespace MathsLib
 		m_pElements = newElements;
 	}
 
-	inline unsigned int PerlinNoise <1>::getSize() const
+	inline unsigned int PerlinNoise <1>::size() const
 	{
 		return m_nSize;
 	}
@@ -242,7 +242,7 @@ namespace MathsLib
 		}
 	}
 
-	inline double PerlinNoise <1>::smooth(vector <unsigned int>& _indices)
+	inline double PerlinNoise <1>::smooth(std::vector <unsigned int>& _indices)
 	{
 		unsigned int index = _indices[0];
 		_indices.erase(_indices.begin());
@@ -255,7 +255,7 @@ namespace MathsLib
 		return result;
 	}
 
-	inline float& PerlinNoise <1>::get(vector <unsigned int>& _indices)
+	inline float& PerlinNoise <1>::get(std::vector <unsigned int>& _indices)
 	{
 		unsigned int index = _indices.front();
 		_indices.erase(_indices.begin());
