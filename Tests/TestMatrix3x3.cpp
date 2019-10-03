@@ -18,5 +18,21 @@ namespace Tests
 			std::string actual = matrix.toString();
 			Assert::AreEqual(expected, actual);
 		}
+
+		TEST_METHOD(TestIdentity)
+		{
+			Matrix3x3 matrix;
+			matrix.identity();
+
+			Assert::AreEqual(1.0f, matrix.m[0]);
+			Assert::AreEqual(0.0f, matrix.m[1]);
+			Assert::AreEqual(0.0f, matrix.m[2]);
+			Assert::AreEqual(0.0f, matrix.m[3]);
+			Assert::AreEqual(1.0f, matrix.m[4]);
+			Assert::AreEqual(0.0f, matrix.m[5]);
+			Assert::AreEqual(0.0f, matrix.m[6]);
+			Assert::AreEqual(0.0f, matrix.m[7]);
+			Assert::AreEqual(1.0f, matrix.m[8]);
+		}
 	};
 }
