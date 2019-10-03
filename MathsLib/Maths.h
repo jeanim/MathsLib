@@ -355,6 +355,8 @@ namespace MathsLib
 
 	inline bool Maths::isPowerOfTwo(unsigned int _value)
 	{
+		// Using a simple bit trick here. n is a power of 2 if: n & (n - 1) == 0
+		// We additionally need to check if it's non zero hence && _value at the end.
 		return !(_value & (_value - 1)) && _value;
 	}
 
