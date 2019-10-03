@@ -47,9 +47,10 @@ namespace MathsLib
 	std::string Matrix3x3::toString()
 	{
 		std::stringstream buffer;
-		for(unsigned int i = 0; i < 8; ++i)
-			buffer << m[i] << " ";
-		buffer << m[9];
+		for (unsigned int i = 0; i < 9; ++i) {
+			buffer << m[i];
+			if (i < 8) buffer << " ";
+		}
 
 		return buffer.str();
 	}
