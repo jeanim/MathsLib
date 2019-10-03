@@ -276,7 +276,7 @@ namespace MathsLib
 			fld		_num		// s0 = num
 			fsqrt				// s0 = sqrtf(_num)
 		}*/
-		return fsqrt(_num);
+		return sqrtf(_num);
 	}
 
 	inline float Maths::perlinNoiseGenerator(int _x, int _y, int _random)

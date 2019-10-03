@@ -11,10 +11,6 @@ namespace Tests
 	{
 	public:
 		static constexpr float ERROR_THRESH = 0.0001f;
-		
-		TEST_METHOD(TestMethod1)
-		{
-		}
 
 		TEST_METHOD(testSine)
 		{
@@ -45,7 +41,6 @@ namespace Tests
 			Assert::AreEqual(1.0f, Maths::fsqrt(1.0f));
 			Assert::AreEqual(2.0f, Maths::fsqrt(4.0f));
 			Assert::AreEqual(3.0f, Maths::fsqrt(9.0f));
-			Assert::IsTrue(Maths::fsqrt(-1.0f) != Maths::fsqrt(-1.0f));
 		}
 
 		TEST_METHOD(testClamp)
