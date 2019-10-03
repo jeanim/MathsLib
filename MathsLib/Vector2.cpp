@@ -167,14 +167,15 @@ namespace MathsLib
 		return (*this);
 	}
 
-	Vector2 Vector2::operator+(const Vector2& rhs)
+	const Vector2 operator+(const Vector2& lhs, const Vector2& rhs)
 	{
-		return Vector2(this->x + rhs.x, this->y + rhs.y);
+		return Vector2(lhs.x + rhs.x, lhs.y + rhs.y);
 	}
 
-	Vector2 Vector2::operator-(const Vector2& rhs)
+	const Vector2 operator-(const Vector2& lhs, const Vector2& rhs)
 	{
-		return Vector2(this->x - rhs.x, this->y - rhs.y);
+		return Vector2(lhs.x - rhs.x,
+			lhs.y - rhs.y);
 	}
 
 	const Vector2 operator*(const Vector2& lhs, const float& rhs)
