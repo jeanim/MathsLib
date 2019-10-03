@@ -13,7 +13,7 @@ namespace Tests
 	TEST_CLASS(TestVector4)
 	{
 	public:
-		static constexpr float ERROR_THRESH = 0.0001f;
+		static constexpr float eps = 0.0001f;
 
 		TEST_METHOD(addVectorVector)
 		{

@@ -13,7 +13,7 @@ namespace Tests
 	TEST_CLASS(TestVector2)
 	{
 	public:
-		static constexpr float ERROR_THRESH = 0.0001f;
+		static constexpr float eps = 0.0001f;
 
 
 		TEST_METHOD(testNormalize)
@@ -22,27 +22,27 @@ namespace Tests
 
 			test = Vector2::UNIT_X;
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 
 			test = Vector2::NEGATIVE_UNIT_Y;
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 
 			test = Vector2(1.0f, 1.0f);
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 
 			test.set(1.0f, 2.0f);
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 
 			test.set(3.0f, 0.0f);
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 
 			test.set(-3.0f, 0.5f);
 			test.normalize();
-			Assert::IsTrue(std::fabs(test.getLength() - ERROR_THRESH) < 1.0f);
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
 		}
 
 		TEST_METHOD(testDotProduct)
@@ -52,14 +52,14 @@ namespace Tests
 
 			test1 = Vector2::UNIT_X;
 			test2 = Vector2::UNIT_Y;
-			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - ERROR_THRESH < 0.0f);
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - eps < 0.0f);
 
 			test2 = Vector2::NEGATIVE_UNIT_Y;
-			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - ERROR_THRESH < 0.0f);
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - eps < 0.0f);
 
 			test1 = Vector2::UNIT_X;
 			test2 = Vector2::UNIT_X;
-			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) + ERROR_THRESH > 1.0f);
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) + eps > 1.0f);
 
 			test1 = Vector2::UNIT_Y;
 			test2 = Vector2::UNIT_Y;

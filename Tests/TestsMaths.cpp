@@ -10,30 +10,30 @@ namespace Tests
 	TEST_CLASS(TestMaths)
 	{
 	public:
-		static constexpr float ERROR_THRESH = 0.0001f;
+		static constexpr float eps = 0.0001f;
 
 		TEST_METHOD(testSine)
 		{
 			Maths::setAngleUnit(Maths::ANGLE_RADIAN);
 
-			Assert::IsTrue(fabs(Maths::fsin(0.0f)) < ERROR_THRESH);
+			Assert::IsTrue(fabs(Maths::fsin(0.0f)) < eps);
 			Assert::IsTrue(Maths::fsin(Maths::PI / 2) == 1.0f);
-			Assert::IsTrue(fabs(Maths::fsin(Maths::PI)) < ERROR_THRESH);
+			Assert::IsTrue(fabs(Maths::fsin(Maths::PI)) < eps);
 			Assert::IsTrue(Maths::fsin(Maths::PI * 3 / 2) == -1.0f);
-			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 2)) < ERROR_THRESH);
-			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 4)) < ERROR_THRESH);
+			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 2)) < eps);
+			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 4)) < eps);
 		}
 
 		TEST_METHOD(testCosine)
 		{
 			Maths::setAngleUnit(Maths::ANGLE_RADIAN);
 
-			Assert::IsTrue((Maths::fcos(0.0f) > 1.0f - ERROR_THRESH) && (Maths::fcos(0.0f) < 1.0f + ERROR_THRESH));
-			Assert::IsTrue((Maths::fcos(Maths::PI / 2) > 0.0f - ERROR_THRESH) && (Maths::fcos(Maths::PI / 2) < 0.0f + ERROR_THRESH));
-			Assert::IsTrue((Maths::fcos(Maths::PI) > -1.0f - ERROR_THRESH) && (Maths::fcos(Maths::PI) < -1.0f + ERROR_THRESH));
-			Assert::IsTrue((Maths::fcos(Maths::PI * 3 / 2) > 0.0f - ERROR_THRESH) && (Maths::fcos(Maths::PI * 3 / 2) < 0.0f + ERROR_THRESH));
-			Assert::IsTrue((Maths::fcos(Maths::PI * 2) > 1.0f - ERROR_THRESH) && (Maths::fcos(Maths::PI * 2) < 1.0f + ERROR_THRESH));
-			Assert::IsTrue((Maths::fcos(Maths::PI * 4) > 1.0f - ERROR_THRESH) && (Maths::fcos(Maths::PI * 4) < 1.0f + ERROR_THRESH));
+			Assert::IsTrue(fabs(Maths::fcos(0.0f) - 1.0f) < eps);
+			Assert::IsTrue(fabs(Maths::fcos(Maths::PI / 2)) < eps);
+			Assert::IsTrue(fabs(Maths::fcos(Maths::PI) + 1.0f) < eps);
+			Assert::IsTrue(fabs(Maths::fcos(Maths::PI * 3 / 2)) < eps);
+			Assert::IsTrue(fabs(Maths::fcos(Maths::PI * 2) - 1.0f) < eps);
+			Assert::IsTrue(fabs(Maths::fcos(Maths::PI * 4) - 1.0f) < eps);
 		}
 
 		TEST_METHOD(testSqrt)
