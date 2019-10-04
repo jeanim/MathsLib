@@ -66,10 +66,10 @@ namespace MathsLib
 	bool Ray::intersectPlane(const Plane& _plane)
 	{
 		const Vector3& normal = _plane.getPlaneNormal();
-		float dot = m_vecDirection % normal;
+		float dot = m_vecDirection.dotProduct(normal);
 		if(dot >= 0.0f)
 			return false;
-		float t = (-_plane.getPlaneD() - m_ptOrigin % normal) / dot;
+		float t = (-_plane.getPlaneD() - normal.dotProduct(m_ptOrigin)) / dot;
 
 		m_ptIntersectionPoint = m_ptOrigin + m_vecDirection * t;
 
@@ -87,13 +87,13 @@ namespace MathsLib
 		Vector3 vec2 = _vec2 - _vec0;
 
 		Vector3 normal = vec2 * vec1;
-		float dot = normal % m_vecDirection;
+		float dot = normal.dotProduct(m_vecDirection);
 
 		if(dot >= 0.0f)
 			return false;
 
-		float d = normal % _vec0;
-		float t = d - normal % m_ptOrigin;
+		float d = normal.dotProduct(_vec0);
+		float t = d - normal.dotProduct(m_ptOrigin);
 
 		if(t > 0.0f || t < dot)
 			return false;

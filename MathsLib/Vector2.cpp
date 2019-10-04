@@ -194,11 +194,6 @@ namespace MathsLib
 		return result;
 	}
 
-	const float operator%(const Vector2& lhs, const Vector2& rhs)
-	{
-		return (lhs.dotProduct(rhs));
-	}
-
 	const Vector2 Vector2::operator-()
 	{
 		Vector2 newVector(*this);

@@ -257,7 +257,7 @@ namespace MathsLib
 	{
 		Vector3 axis = _vec1 * _vec2;
 		axis.normalize();
-		float angle = acosf((_vec1 % _vec2) / (_vec1.length() * _vec2.length()));
+		float angle = acosf((_vec1.dotProduct(_vec2)) / (_vec1.length() * _vec2.length()));
 
 		Quaternion quat(axis, angle);
 		quat.normalize();
@@ -269,7 +269,7 @@ namespace MathsLib
 	{
 		Vector3 axis = _vec1 * _vec2;
 		axis.normalize();
-		float angle = acosf((_vec1 % _vec2) / (_vec1.length() * _vec2.length()));
+		float angle = acosf((_vec1.dotProduct(_vec2)) / (_vec1.length() * _vec2.length()));
 
 		return Quaternion(axis, angle);
 	}

@@ -360,11 +360,6 @@ namespace MathsLib
 		return result;
 	}
 
-	const float operator%(const Vector4& lhs, const Vector4& rhs)
-	{
-		return (lhs.dotProduct(rhs));
-	}
-
 	bool operator==(const Vector4& _vec1, const Vector4& _vec2)
 	{
 		return (!Maths::floatCompare(_vec1.x, _vec2.x) &&

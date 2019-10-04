@@ -64,7 +64,7 @@ namespace MathsLib
 
 	void Plane::calculatePoint(const Vector3& _normal, float _d)
 	{
-		float sum = _normal % _normal;
+		float sum = _normal.dotProduct(_normal);
 		float factor = -_d / sum;
 
 		m_ptPoint.set(_normal.x * factor,
@@ -120,7 +120,7 @@ namespace MathsLib
 
 	float Plane::getDistanceFromPlane(const Vector3& _vec) const
 	{
-		return (m_vecNormal % _vec + D) / m_vecNormal.getLength();
+		return (m_vecNormal.dotProduct(_vec) + D) / m_vecNormal.getLength();
 	}
 
 	void Plane::fromString(const std::string& _string)

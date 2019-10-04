@@ -183,8 +183,6 @@ namespace MathsLib
 		friend const Vector3 operator*(const float& lhs, const Vector3& rhs);
 		friend const Vector3 operator*(const Vector3& lhs, const Vector3& rhs);
 
-		friend const float operator%(const Vector3& lhs, const Vector3& rhs);
-
 		const Vector3 operator-();
 
 		bool operator==(const Vector3& _vec);

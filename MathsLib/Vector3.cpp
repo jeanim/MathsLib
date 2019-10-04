@@ -67,7 +67,7 @@ namespace MathsLib
 	Vector3 Vector3::deflect(const Plane& _pl)
 	{
 		Vector3 normal = _pl.getPlaneNormal();
-		float dot = (*this) % normal;
+		float dot = this->dotProduct(normal);
 
 		return ((*this) - normal * (2.0f * dot));
 	}
@@ -340,11 +340,6 @@ namespace MathsLib
 	const Vector3 operator*(const Vector3& lhs, const Vector3& rhs)
 	{
 		return (lhs.crossProduct(rhs));
-	}
-
-	const float operator%(const Vector3& lhs, const Vector3& rhs)
-	{
-		return (lhs.dotProduct(rhs));
 	}
 
 	bool operator==(const Vector3& _vec1, const Vector3& _vec2)

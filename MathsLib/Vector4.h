@@ -173,8 +173,6 @@ namespace MathsLib
 		friend const Vector4 operator*(const Vector4& lhs, const float& rhs);
 		friend const Vector4 operator*(const float& lhs, const Vector4& rhs);
 
-		friend const float operator%(const Vector4& lhs, const Vector4& rhs);
-
 		const Vector4 operator-();
 
 		bool operator==(const Vector4& _vec);
