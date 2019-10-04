@@ -11,7 +11,7 @@ namespace Tests
 {
 	TEST_CLASS(TestAABB)
 	{
-		TEST_METHOD(TestCreation)
+		TEST_METHOD(testCreation)
 		{
 			Vector3 minimum{ -1, -1, -1 };
 			Vector3 maximum{ 1, 1, 1 };
@@ -33,7 +33,7 @@ namespace Tests
 			Assert::AreEqual(0.0f, val.z);
 		}
 
-		TEST_METHOD(TestFits_Smaller_Inside_Larger_Expected_True)
+		TEST_METHOD(testFits_Smaller_Inside_Larger_Expected_True)
 		{
 			AABB aabb1{ Vector3{ -1, -1, -1 }, Vector3{ 1, 1, 1 } };
 			AABB aabb2{ Vector3{-0.5f, -0.5f, -0.5f}, Vector3{0.5f, 0.5f, 0.5f} };
@@ -41,7 +41,7 @@ namespace Tests
 			Assert::IsTrue(aabb1.fits(aabb2));
 		}
 
-		TEST_METHOD(TestFits_Larger_Inside_Smaller_Expected_False)
+		TEST_METHOD(testFits_Larger_Inside_Smaller_Expected_False)
 		{
 			AABB aabb1{ Vector3{ -1, -1, -1 }, Vector3{ 1, 1, 1 } };
 			AABB aabb2{ Vector3{-0.5f, -0.5f, -0.5f}, Vector3{0.5f, 0.5f, 0.5f} };
@@ -49,7 +49,7 @@ namespace Tests
 			Assert::IsFalse(aabb2.fits(aabb1));
 		}
 
-		TEST_METHOD(TestFits_Same_Size_Expected_False)
+		TEST_METHOD(testFits_Same_Size_Expected_False)
 		{
 			AABB aabb1{ Vector3{ -1, -1, -1 }, Vector3{ 1, 1, 1 } };
 			AABB aabb2{ Vector3{ -1, -1, -1 }, Vector3{ 1, 1, 1 } };

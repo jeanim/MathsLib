@@ -36,6 +36,12 @@
     <ClCompile Include="Tests\TestAABB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\TestMatrix4x4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\TestRay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

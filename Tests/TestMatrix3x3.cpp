@@ -10,7 +10,7 @@ namespace Tests
 {
 	TEST_CLASS(TestMatrix3x3)
 	{
-		TEST_METHOD(TestToString)
+		TEST_METHOD(testToString)
 		{
 			Matrix3x3 matrix{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -19,7 +19,7 @@ namespace Tests
 			Assert::AreEqual(expected, actual);
 		}
 
-		TEST_METHOD(TestIdentity)
+		TEST_METHOD(testIdentity)
 		{
 			Matrix3x3 matrix;
 			matrix.identity();

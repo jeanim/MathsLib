@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "..//MathsLib/Maths.h"
 #include "..//MathsLib/Vector4.h"
+#include "..//MathsLib/Vector2.h"
 
 using std::string;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -15,6 +16,46 @@ namespace Tests
 	public:
 		static constexpr float eps = 0.0001f;
 
+		TEST_METHOD(testNormalize)
+		{
+			Vector4 test;
+
+			test = Vector4::UNIT_X;
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+
+			test = Vector4::NEGATIVE_UNIT_Y;
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+
+			test = Vector4(1.0f, 1.0f, 0.5f, -0.2f);
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+
+			test.set(1.0f, 2.0f, 3.0f, 0.0f);
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+
+			test.set(3.0f, 0.0f, 0.0f, 5.0f);
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+
+			test.set(-3.0f, 0.5f, 1.0f, 1.0f);
+			test.normalize();
+			Assert::IsTrue(std::fabs(test.getLength() - eps) < 1.0f);
+		}
+
+		TEST_METHOD(testNormalize_ZeroVector_Expected_NoChange)
+		{
+			Vector4 vec{ 0, 0, 0, 0 };
+			vec.normalize();
+
+			Assert::AreEqual(0.0f, vec.x);
+			Assert::AreEqual(0.0f, vec.y);
+			Assert::AreEqual(0.0f, vec.z);
+			Assert::AreEqual(0.0f, vec.w);
+		}
+		
 		TEST_METHOD(addVectorVector)
 		{
 			Vector4 vec1{ 1.0f, 2.0f, 3.0f, 4.0f };
@@ -84,6 +125,27 @@ namespace Tests
 			Assert::AreEqual(2.0f, vec1[1]);
 			Assert::AreEqual(3.0f, vec1[2]);
 			Assert::AreEqual(4.0f, vec1[3]);
+		}
+
+		TEST_METHOD(testDotProduct)
+		{
+			Vector4 test1;
+			Vector4 test2;
+
+			test1 = Vector4::UNIT_X;
+			test2 = Vector4::UNIT_Y;
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - eps < 0.0f);
+
+			test2 = Vector4::NEGATIVE_UNIT_Y;
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) - eps < 0.0f);
+
+			test1 = Vector4(Vector2::UNIT_X);
+			test2 = Vector4::UNIT_X;
+			Assert::IsTrue(std::fabs(test1.dotProduct(test2)) + eps > 1.0f);
+
+			test1 = Vector4::UNIT_Z;
+			test2 = Vector4::UNIT_W;
+			Assert::IsTrue(test1.dotProduct(test2) == (test1.z * test2.z + test1.w * test2.w));
 		}
 	};
 }
