@@ -27,7 +27,6 @@
     <ClInclude Include="MathsLib\Maths.h" />
     <ClInclude Include="MathsLib\Matrix3x3.h" />
     <ClInclude Include="MathsLib\Matrix4x4.h" />
-    <ClInclude Include="MathsLib\PerlinNoise.h" />
     <ClInclude Include="MathsLib\Plane.h" />
     <ClInclude Include="MathsLib\Point.h" />
     <ClInclude Include="MathsLib\Quaternion.h" />

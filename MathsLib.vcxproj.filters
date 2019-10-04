@@ -36,9 +36,6 @@
     <ClInclude Include="MathsLib\Matrix4x4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MathsLib\PerlinNoise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MathsLib\Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
