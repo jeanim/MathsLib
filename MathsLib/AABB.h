@@ -47,7 +47,8 @@ namespace MathsLib
 		/// Returns AABB centre point.
 		Vector3& getCentre() {return m_vecCentre;}
 
-		/// Checks whether another AABB lies completely inside this one.
+		/// Checks whether another AABB fits completely inside this one. Please note that AABB of the equal size,
+		/// doesn't fit.
 		bool fits(AABB& _aabb);
 
 		/// Sets AABB minimum and maximum vectors.
