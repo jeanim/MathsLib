@@ -3,7 +3,7 @@
 
 namespace MathsLib
 {
-	bool* BrownianTree::operator()(const std::vector <TREE_SEED>& _seeds, size_t _width, size_t _height,
+	bool* BrownianTree::operator()(const std::vector <BrownianTreeSeed>& _seeds, size_t _width, size_t _height,
 		size_t _iterations)
 	{
 		// If no seeds are defined, return NULL

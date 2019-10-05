@@ -17,7 +17,7 @@ namespace MathsLib
 	class BrownianTree
 	{
 	public:
-		typedef std::pair <unsigned int, unsigned int> TREE_SEED;
+		using BrownianTreeSeed = std::pair <unsigned int, unsigned int>;
 
 	public:
 		/** Generates tree data.
@@ -34,7 +34,7 @@ namespace MathsLib
 				responsibility to free this. nullptr is returned if no
 				_seeds where specified (i.e. vector is empty).
 		*/
-		bool* operator()(const std::vector <TREE_SEED>& _seeds, size_t _width=256, size_t _height=256,
+		bool* operator()(const std::vector <BrownianTreeSeed>& _seeds, size_t _width=256, size_t _height=256,
 			size_t _iterations=1000);
 	};
 }
