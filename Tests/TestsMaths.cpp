@@ -144,7 +144,13 @@ namespace Tests
 			}
 		}
 
-		TEST_METHOD(testLerp)
+		TEST_METHOD(testLerp_IncorrectT)
+		{
+			Assert::AreEqual(0.0f, Maths::lerp<float>(0.0f, 1.0f, -1.0f));
+			Assert::AreEqual(1.0f, Maths::lerp<float>(0.0f, 1.0f, 2.0f));
+		}
+
+		TEST_METHOD(testLerp_Correct_Float)
 		{
 			// Tests for float
 			Assert::AreEqual(0.0f, Maths::lerp <float>(0.0f, 10.0f, 0.0f));
@@ -159,6 +165,24 @@ namespace Tests
 			Assert::AreEqual(10, Maths::lerp <int>(0, 10, 1.0f));
 			Assert::AreEqual(2, Maths::lerp <int>(0, 10, 0.25f));
 			Assert::AreEqual(2, Maths::lerp <int>(0, 10, 0.28f));
+		}
+
+		TEST_METHOD(testLerp_Correct_Vector2)
+		{
+			Vector2 p1{ 1, 2 };
+			Vector2 p2{ 3, 4 };
+
+			Vector2 result = Maths::lerp<Vector2>(p1, p2, 0.0f);
+			Assert::AreEqual(1.0f, result.x);
+			Assert::AreEqual(2.0f, result.y);
+
+			result = Maths::lerp<Vector2>(p1, p2, 0.5f);
+			Assert::AreEqual(2.0f, result.x);
+			Assert::AreEqual(3.0f, result.y);
+
+			result = Maths::lerp<Vector2>(p1, p2, 1.0f);
+			Assert::AreEqual(3.0f, result.x);
+			Assert::AreEqual(4.0f, result.y);
 		}
 
 		TEST_METHOD(testIsPowerOfTwo)

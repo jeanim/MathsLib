@@ -398,9 +398,9 @@ namespace MathsLib
 	}
 
 	template <typename T>
-	inline T Maths::lerp(const T& _start, const T& _end, const float& _s)
+	inline T Maths::lerp(const T& start, const T& end, const float& t)
 	{
-		return (1.0f - _s) * _start + _s * _end;
+		return t < 0.0f ? start : (t > 1.0f ? end : (1.0f - t) * start + t * end);
 	}
 
 	template <typename T>
