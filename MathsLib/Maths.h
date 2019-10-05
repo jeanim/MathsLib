@@ -214,13 +214,35 @@ namespace MathsLib
 
 		/* This function creates a Catmull-Rom spline between 4 points. The main advantage of this
 		spline is that it can produce smooth interpolated motion between key frames (so it's great
-		for animation).
-		You need to provide EXACTLY 4 points and t ranging from 0 to 1.
+		for animation, especially for camera movement).
+
+		Remarks:
+			1) You need to provide EXACTLY 4 points and t ranging from 0 to 1.
+			2) You can use any type provided it overloads multiplication (*) and addition (+) operators.
 		*/
-		static float catmullRomInterpolation(const std::vector<float>& points, float t);
+		template <typename T> static T catmullRomInterpolation(const std::vector<T>& points, float t);
 	};
 
 
+
+	template <typename T>
+	T Maths::catmullRomInterpolation(const std::vector<T>& points, float t)
+	{
+		if (t < 0.0f || t > 1.0f || points.size() != 4)
+			return T(0.0f);
+
+		T P0 = points[0];
+		T P1 = points[1];
+		T P2 = points[2];
+		T P3 = points[3];
+
+		T result = 0.5f * ((2.0f * P1) +
+			(-P0 + P2) * t +
+			(2.0f * P0 - 5.0f * P1 + 4.0f * P2 - P3) * t * t +
+			(-P0 + 3.0f * P1 - 3.0f * P2 + P3) * t * t * t);
+
+		return result;
+	}
 
 	inline int Maths::floatCompare(float _value1, float _value2)
 	{
