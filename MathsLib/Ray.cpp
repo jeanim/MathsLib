@@ -44,7 +44,7 @@ namespace MathsLib
 				float t2 = (vecMax[i] - m_ptOrigin[i]) * inv;
 
 				if(t1 > t2)
-					Maths::swap(t1, t2);
+					std::swap(t1, t2);
 				if(t1 > t)
 					t = t1;
 				if(t2 < tmax)

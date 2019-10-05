@@ -213,10 +213,6 @@ namespace MathsLib
 				whereas when it is 1.0 then it equals _end.
 		*/
 		template <typename T> static T coserp(const T& _start, const T& _end, const float& _s);
-
-
-		/// Swaps two values.
-		template <typename T> static void swap(T& _val1, T& _val2);
 	};
 
 
@@ -397,15 +393,6 @@ namespace MathsLib
 		float s = (1.0f - Maths::fcos(temp)) * 0.5f;
 
 		return (_start + s * (_end - _start));
-	}
-
-	template <typename T>
-	inline void Maths::swap(T& _val1, T& _val2)
-	{
-		T temp = _val1;
-
-		_val1 = _val2;
-		_val2 = temp;
 	}
 
 }
