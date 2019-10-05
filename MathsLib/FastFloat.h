@@ -27,7 +27,8 @@ namespace MathsLib
 		static float s_fQuarter;
 		static int s_nMask;
 
-		static const float FTOIBIAS;			///< Bias used in operations on float
+		static constexpr size_t sineTableSize = 2048;
+		static const float FTOIBIAS;					///< Bias used in operations on float
 
 
 		/** Creates sine look-up table which is also used for cosine
@@ -36,11 +37,10 @@ namespace MathsLib
 				Using sine/cosine table version is faster than calling
 				std sinf and cosf functions but results are less accurate.
 		*/
-		void initLookupTable();
+		static void initLookupTable();
 
 	public:
-		FastFloat(size_t _sinTableSize=512);
-		~FastFloat();
+		FastFloat() = delete;
 
 		/** Converts float to integer.
 			@remarks
@@ -85,6 +85,8 @@ namespace MathsLib
 
 	inline float FastFloat::fsin(const float& _phi)
 	{
+		if (s_pSinTable.empty()) initLookupTable();
+
 		int i;
 		INT_OR_FLOAT temp;
 
@@ -96,6 +98,8 @@ namespace MathsLib
 
 	inline float FastFloat::fcos(const float& _phi)
 	{
+		if (s_pSinTable.empty()) initLookupTable();
+
 		int i;
 		INT_OR_FLOAT temp; 
 		temp.f = _phi*(s_fModifier) + FTOIBIAS + s_fQuarter;

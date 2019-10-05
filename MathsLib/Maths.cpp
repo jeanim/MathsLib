@@ -15,8 +15,6 @@ namespace MathsLib
 	const float Maths::MinusInfinity = -Maths::Infinity;
 	const float Maths::FloatEpsilon = 0.000001f;
 
-	FastFloat* Maths::s_FastFloat = new FastFloat();
-
 	bool Maths::m_bUseTables = true;
 	bool Maths::m_bUseSSE = false;
 
@@ -30,6 +28,24 @@ namespace MathsLib
 	
 	Maths::~Maths()
 	{
+	}
+
+	float Maths::catmullRomInterpolation(const std::vector<float>& points, float t)
+	{
+		if(t < 0.0f || t > 1.0f || points.size() != 4)
+			return 0.0f;
+
+		float P0 = points[0];
+		float P1 = points[1];
+		float P2 = points[2];
+		float P3 = points[3];
+
+		float result = 0.5f * ((2.0f * P1) +
+			(-P0 + P2) * t +
+			(2.0f * P0 - 5.0f * P1 + 4.0f * P2 - P3) * t * t +
+			(-P0 + 3.0f * P1 - 3.0f * P2 + P3) * t * t * t);
+
+		return result;
 	}
 	
 }

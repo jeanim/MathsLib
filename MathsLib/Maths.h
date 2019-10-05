@@ -48,8 +48,6 @@ namespace MathsLib
 
 	private:
 		static ANGLE_UNIT s_AngleUnit;			///< Degrees/Radians
-		static FastFloat* s_FastFloat;			/**< Fast calculations on floating
-													 point numbers */
 
 		static bool m_bUseTables;				///< Should trigonometry tables be used?
 		static bool m_bUseSSE;					///< Should SSE extensions be used?
@@ -213,6 +211,13 @@ namespace MathsLib
 				whereas when it is 1.0 then it equals _end.
 		*/
 		template <typename T> static T coserp(const T& _start, const T& _end, const float& _s);
+
+		/* This function creates a Catmull-Rom spline between 4 points. The main advantage of this
+		spline is that it can produce smooth interpolated motion between key frames (so it's great
+		for animation).
+		You need to provide EXACTLY 4 points and t ranging from 0 to 1.
+		*/
+		static float catmullRomInterpolation(const std::vector<float>& points, float t);
 	};
 
 

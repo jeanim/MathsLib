@@ -10,7 +10,7 @@ namespace Tests
 	TEST_CLASS(TestMaths)
 	{
 	public:
-		static constexpr float eps = 0.0001f;
+		static constexpr float eps = 0.01f;
 
 		TEST_METHOD(testSine)
 		{
@@ -19,7 +19,7 @@ namespace Tests
 			Assert::IsTrue(fabs(Maths::fsin(0.0f)) < eps);
 			Assert::IsTrue(Maths::fsin(Maths::PI / 2) == 1.0f);
 			Assert::IsTrue(fabs(Maths::fsin(Maths::PI)) < eps);
-			Assert::IsTrue(Maths::fsin(Maths::PI * 3 / 2) == -1.0f);
+			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 3 / 2) + 1.0f) < eps);
 			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 2)) < eps);
 			Assert::IsTrue(fabs(Maths::fsin(Maths::PI * 4)) < eps);
 		}
@@ -175,6 +175,12 @@ namespace Tests
 			Assert::AreEqual(2u, Maths::roundUpToPowerOfTwo(2));
 			Assert::AreEqual(4u, Maths::roundUpToPowerOfTwo(3));
 			Assert::AreEqual(16u, Maths::roundUpToPowerOfTwo(10));
+		}
+
+		TEST_METHOD(testCatmullRomInterpolation_Invalid_T)
+		{
+			float result = Maths::catmullRomInterpolation({ 0, 1, 2, 3 }, -1.0f);
+			Assert::AreEqual(0.0f, result);
 		}
 	};
 }
