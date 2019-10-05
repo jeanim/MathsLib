@@ -187,12 +187,6 @@ namespace MathsLib
 	void Matrix3x3::multiply(const Matrix3x3& _matrix)
 	{
 		Matrix3x3 mat;
-		if (Maths::isUsingSSE())
-		{
-		}
-		else
-		{
-		}
 
 		mat[0][0] = _m[0][0] * _matrix[0][0] + _m[0][1] * _matrix[1][0] +
 			_m[0][2] * _matrix[2][0];
@@ -228,13 +222,6 @@ namespace MathsLib
 	Vector3 Matrix3x3::multiply(const Vector3& _vec)
 	{
 		Vector3 vecResult;
-		/// @todo Implement SSE version
-		if (Maths::isUsingSSE())
-		{
-		}
-		else
-		{
-		}
 
 		vecResult.set(_m11 * _vec.x + _m12 * _vec.y + _m13 * _vec.z,
 			_m21 * _vec.x + _m22 * _vec.y + _m23 * _vec.z,

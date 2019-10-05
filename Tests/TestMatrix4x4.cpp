@@ -145,9 +145,9 @@ namespace Tests
 			Assert::IsTrue(mat0.isZero());
 		}
 
-		TEST_METHOD(testMultiplication)
+		TEST_METHOD(testMultiplicationByIdentityMatrix_Expected_Same)
 		{
-			Matrix4x4 mat1(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+			Matrix4x4 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
 			Matrix4x4 mat2;
 			Matrix4x4 mat0;
 
@@ -155,10 +155,24 @@ namespace Tests
 			mat0 = mat1;
 			mat0.multiply(mat2);
 			Assert::IsTrue(mat0 == mat1);
+		}
+
+		TEST_METHOD(testMultiplicationByOtherMatrix)
+		{
+			Matrix4x4 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+			Matrix4x4 mat2;
+			Matrix4x4 mat0;
 
 			mat0 = mat2;
 			mat0.multiply(mat1);
 			Assert::IsTrue(mat0 == mat1);
+		}
+
+		TEST_METHOD(testMultiplicationByNumber)
+		{
+			Matrix4x4 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+			Matrix4x4 mat2;
+			Matrix4x4 mat0;
 
 			mat0 = mat1;
 			mat0.multiply(2);
@@ -167,6 +181,21 @@ namespace Tests
 			mat0 = mat1;
 			mat0 *= 2.0f;
 			Assert::IsTrue(mat0 == 2 * mat1);
+		}
+
+		TEST_METHOD(testMultiplicationByZero_Expected_ZeroMatrix)
+		{
+			Matrix4x4 mat1(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+			Matrix4x4 mat2;
+			Matrix4x4 mat0;
+
+			mat0 = mat1;
+			mat0.multiply(0);
+			Assert::IsTrue(mat0.isZero());
+
+			mat0 = mat1;
+			mat0 *= 0.0f;
+			Assert::IsTrue(mat0.isZero());
 		}
 
 		TEST_METHOD(testVector4MatMultiplication)
