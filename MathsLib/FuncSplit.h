@@ -17,14 +17,14 @@ namespace MathsLib
 		FuncSplit() {}
 		virtual ~FuncSplit() {}
 
-		void operator()(const T& t, std::vector <T>& vec, const T& delim, unsigned int limit=0);
+		void operator()(const T& t, std::vector <T>& vec, const T& delim, size_t limit=0);
 	};
 
 
 
 //----------------------------------------------------------------------
 	template <typename T>
-	void FuncSplit<typename T>::operator()(const T& t, std::vector <T>& vec, const T& delim, unsigned int limit)
+	void FuncSplit<typename T>::operator()(const T& t, std::vector <T>& vec, const T& delim, size_t limit)
 	{
 		// Skip delimiters at beginning.
 		size_t lastPos = t.find_first_not_of(delim);

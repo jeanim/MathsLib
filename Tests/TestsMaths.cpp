@@ -190,14 +190,19 @@ namespace Tests
 			Assert::AreEqual(4.0f, result.y);
 		}
 
-		TEST_METHOD(testIsPowerOfTwo)
+		TEST_METHOD(testIsPowerOfTwo_Expected_False)
 		{
 			Assert::IsFalse(Maths::isPowerOfTwo(0));
+			Assert::IsFalse(Maths::isPowerOfTwo(3));
+			Assert::IsFalse(Maths::isPowerOfTwo(5));
+			Assert::IsFalse(Maths::isPowerOfTwo(17));
+		}
+
+		TEST_METHOD(testIsPowerOfTwo_Expected_True)
+		{
 			Assert::IsTrue(Maths::isPowerOfTwo(1));
 			Assert::IsTrue(Maths::isPowerOfTwo(2));
-			Assert::IsFalse(Maths::isPowerOfTwo(3));
 			Assert::IsTrue(Maths::isPowerOfTwo(4));
-			Assert::IsFalse(Maths::isPowerOfTwo(17));
 			Assert::IsTrue(Maths::isPowerOfTwo(128));
 		}
 
@@ -206,7 +211,10 @@ namespace Tests
 			Assert::AreEqual(1u, Maths::roundUpToPowerOfTwo(1));
 			Assert::AreEqual(2u, Maths::roundUpToPowerOfTwo(2));
 			Assert::AreEqual(4u, Maths::roundUpToPowerOfTwo(3));
+			Assert::AreEqual(4u, Maths::roundUpToPowerOfTwo(4));
+			Assert::AreEqual(8u, Maths::roundUpToPowerOfTwo(5));
 			Assert::AreEqual(16u, Maths::roundUpToPowerOfTwo(10));
+			Assert::AreEqual(16u, Maths::roundUpToPowerOfTwo(16));
 		}
 
 		TEST_METHOD(testCatmullRomInterpolation_InvalidT)
