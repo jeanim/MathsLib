@@ -161,8 +161,8 @@ namespace MathsLib
 		bool operator==(const Quaternion& _quat);
 		bool operator!=(const Quaternion& _quat);
 
-		float operator[](unsigned int i);
-		float operator[](unsigned int i) const;
+		float operator[](size_t i);
+		float operator[](size_t i) const;
 
 
 		/** Creates Quaternion from string.

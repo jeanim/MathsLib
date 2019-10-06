@@ -411,7 +411,7 @@ namespace MathsLib
 		for(unsigned int i = _start + 1; i < _count; ++i)
 		{
 			unsigned int j = rand() % _count;
-			Maths::swap <T> (_set[i], _set[j]);
+			std::swap <T> (_set[i], _set[j]);
 		}
 	}
 

@@ -198,13 +198,13 @@ namespace MathsLib
 		return (newVector);
 	}
 
-	float Vector2::operator[](unsigned int i)
+	float Vector2::operator[](size_t i)
 	{
 		Assert(i < 2, "Vector dimension index not allowed");
 		return (vals[i]);
 	}
 
-	float Vector2::operator[](unsigned int i) const
+	float Vector2::operator[](size_t i) const
 	{
 		Assert(i < 2, "Vector dimension index not allowed");
 		return (vals[i]);

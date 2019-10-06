@@ -69,8 +69,8 @@ namespace MathsLib
 
 		operator Vector3() const;
 
-		float operator[](unsigned int i);
-		float operator[](unsigned int i) const;
+		float operator[](size_t i);
+		float operator[](size_t i) const;
 
 		/** Creates Vector3 from string.
 		@param

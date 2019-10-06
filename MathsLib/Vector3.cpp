@@ -356,13 +356,13 @@ namespace MathsLib
 		return &vals[0];
 	}
 
-	float Vector3::operator[](unsigned int i)
+	float Vector3::operator[](size_t i)
 	{
 		Assert(i < 3, "Vector dimension index not allowed");
 		return (vals[i]);
 	}
 
-	float Vector3::operator[](unsigned int i) const
+	float Vector3::operator[](size_t i) const
 	{
 		Assert(i < 3, "Vector dimension index not allowed");
 		return (vals[i]);

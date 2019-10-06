@@ -149,13 +149,13 @@ namespace MathsLib
 		return (Vector3(x, y, z));
 	}
 
-	float Point::operator[](unsigned int i)
+	float Point::operator[](size_t i)
 	{
 		Assert(i < 3, "Point dimension index not allowed");
 		return (point[i]);
 	}
 
-	float Point::operator[](unsigned int i) const
+	float Point::operator[](size_t i) const
 	{
 		Assert(i < 3, "Point dimension index not allowed");
 		return (point[i]);

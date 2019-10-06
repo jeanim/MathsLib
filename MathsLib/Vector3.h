@@ -190,8 +190,8 @@ namespace MathsLib
 		friend bool operator!=(const Vector3& _vec1, const Vector3& _vec2);
 
 
-		float operator[](unsigned int i);
-		float operator[](unsigned int i) const;
+		float operator[](size_t i);
+		float operator[](size_t i) const;
 
 
 		/// Returns array of data.

@@ -87,7 +87,7 @@ namespace MathsLib
 	{
 		if (s_pSinTable.empty()) initLookupTable();
 
-		int i;
+		size_t i;
 		INT_OR_FLOAT temp;
 
 		temp.f = _phi * (s_fModifier) + FTOIBIAS;
@@ -100,7 +100,7 @@ namespace MathsLib
 	{
 		if (s_pSinTable.empty()) initLookupTable();
 
-		int i;
+		size_t i;
 		INT_OR_FLOAT temp; 
 		temp.f = _phi*(s_fModifier) + FTOIBIAS + s_fQuarter;
 		i = temp.i & s_nMask;

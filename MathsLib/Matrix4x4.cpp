@@ -716,13 +716,13 @@ namespace MathsLib
 		return vec;
 	}
 
-	float* Matrix4x4::operator[](unsigned int i)
+	float* Matrix4x4::operator[](size_t i)
 	{
 		Assert(i < 4, "Matrix row index not allowed");
 		return (_m[i]);
 	}
 
-	const float* const Matrix4x4::operator[](unsigned int i) const
+	const float* const Matrix4x4::operator[](size_t i) const
 	{
 		Assert(i < 4, "Matrix row index not allowed");
 		return (_m[i]);

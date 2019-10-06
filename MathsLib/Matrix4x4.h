@@ -269,8 +269,8 @@ namespace MathsLib
 
 		bool operator==(const Matrix4x4& _mat);
 
-		float* operator[](unsigned int i);
-		const float* const operator[](unsigned int i) const;
+		float* operator[](size_t i);
+		const float* const operator[](size_t i) const;
 
 		/// Returns array of data.
 		float* getData();

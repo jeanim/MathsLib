@@ -370,13 +370,13 @@ namespace MathsLib
 			Maths::floatCompare(_vec1.w, _vec2.w));
 	}
 
-	float Vector4::operator[](unsigned int i)
+	float Vector4::operator[](size_t i)
 	{
 		Assert(i < 4, "Vector dimension index not allowed"); //-V112
 		return (vals[i]);
 	}
 
-	float Vector4::operator[](unsigned int i) const
+	float Vector4::operator[](size_t i) const
 	{
 		Assert(i < 4, "Vector dimension index not allowed"); //-V112
 		return (vals[i]);

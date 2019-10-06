@@ -366,13 +366,13 @@ namespace MathsLib
 		return Vector3(rotx, roty, rotz);
 	}
 
-	float Quaternion::operator[](unsigned int i)
+	float Quaternion::operator[](size_t i)
 	{
 		Assert(i < 4, "Quaternion dimension index not allowed"); //-V112
 		return (q[i]);
 	}
 
-	float Quaternion::operator[](unsigned int i) const
+	float Quaternion::operator[](size_t i) const
 	{
 		Assert(i < 4, "Quaternion dimension index not allowed"); //-V112
 		return (q[i]);
