@@ -4,22 +4,11 @@
 
 
 #include <limits>
-/*#include "Matrix4x4.h"
-#include "Matrix3x3.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
-#include "Quaternion.h"*/
 #include "FastFloat.h"
 
 
 namespace MathsLib
 {
-	// Some typedefs
-	//typedef Matrix4x4 Matrix4;				///< Just simplified class name
-	//typedef Matrix3x3 Matrix3;				///< Just simplified class name
-
-
 	/** Represents mathematical calculations and algorithms.
 		@remarks
 			Vast majority of functions of this class are marked
@@ -28,8 +17,7 @@ namespace MathsLib
 	class Maths
 	{
 	public:
-		/** The angular units used by the engine.
-		*/
+		// The angular units used by the library
 		enum class AngleUnits
 		{
 			Unknown,
@@ -37,17 +25,17 @@ namespace MathsLib
 			Radian
 		};
 
-		static constexpr float FloatEpsilon=0.000001f;			///< Epsilon to compare float values
+		static constexpr float FloatEpsilon=0.000001f;			// Epsilon to compare float values
 
 		static constexpr float PI = 3.14159265f;
 		static constexpr float PI_DOUBLE = PI * 2.0f;
 		static constexpr float PI_HALF = PI * 0.5f;
 
 	private:
-		static AngleUnits s_AngleUnit;			///< Degrees/Radians
+		static AngleUnits s_AngleUnit;			// Degrees/Radians
 
-		static bool m_bUseTables;				///< Should trigonometry tables be used?
-		static bool m_bUseSSE;					///< Should SSE extensions be used?
+		static bool m_bUseTables;				// Should trigonometry tables be used instead of functions
+		static bool m_bUseSSE;					// Should SSE extensions be used?
 
 		static constexpr float m_kDegToRad = PI_DOUBLE / 360.0f;
 		static constexpr float m_kRadToDeg = 180.0f / PI;
@@ -86,35 +74,25 @@ namespace MathsLib
 		static void setTrigTableEnabled(bool _value) {m_bUseTables=_value;}
 		static bool getTrigTableEnabled() {return m_bUseTables;}
 
-		/** Converts degrees to radians.
-			@param
-				_angle angle in degrees
-			@return
-				float given angle converted to radians
-		*/
+		// Converts degrees to radians.
 		static float degToRad(float _angle);
 
-		/** Converts radians to degrees.
-			@param
-				_angle angle in radians
-			@return
-				float given angle converted to degrees.
-		*/
+		// Converts radians to degrees.
 		static float radToDeg(float _angle);
 
-		/// Returns sine value from a table for a given angle.
+		// Returns sine value from a table for a given angle.
 		static float fsin(float _angle);
 
-		/// Returns cosine value from a table for a given angle.
+		// Returns cosine value from a table for a given angle.
 		static float fcos(float _angle);
 
-		/// Returns tangens value for a given angle.
+		// Returns tangens value for a given angle.
 		static float ftan(float _angle);
 
-		/// Returns arcus-tangens value for a given angle.
+		// Returns arcus-tangens value for a given angle.
 		static float fatan(float _angle);
 
-		/// Calculates square root of the number.
+		// Calculates square root of the number.
 		static float fsqrt(float _num);
 
 		/** Calculates perlin noise function value.
@@ -128,18 +106,6 @@ namespace MathsLib
 		static float perlinNoiseGenerator(int _x, int _y, int _random);
 
 
-		// Below are functions marked 'friend' elsewhere
-
-
-		/** Normalizes given vector.
-			@remarks
-				The new vector has the same direction as it had, but
-				its	length is equal to 1. Therefore it is usually
-				called unit	vector.
-		*/
-		/*static Vector2 normalize(const Vector2& _vec);
-		static Vector3 normalize(const Vector3& _vec);
-		static Vector4 normalize(const Vector4& _vec);*/
 
 		/** Clamps the number of type T to given boundaries.
 			@param
