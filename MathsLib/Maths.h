@@ -30,11 +30,11 @@ namespace MathsLib
 	public:
 		/** The angular units used by the engine.
 		*/
-		enum ANGLE_UNIT
+		enum class AngleUnits
 		{
-			ANGLE_UNKNOWN,						///< Unit is unknown
-			ANGLE_DEGREE,						///< Degrees
-			ANGLE_RADIAN						///< Radians
+			Unknown,
+			Degree,
+			Radian
 		};
 
 		static constexpr float FloatEpsilon=0.000001f;			///< Epsilon to compare float values
@@ -44,7 +44,7 @@ namespace MathsLib
 		static constexpr float PI_HALF = PI * 0.5f;
 
 	private:
-		static ANGLE_UNIT s_AngleUnit;			///< Degrees/Radians
+		static AngleUnits s_AngleUnit;			///< Degrees/Radians
 
 		static bool m_bUseTables;				///< Should trigonometry tables be used?
 		static bool m_bUseSSE;					///< Should SSE extensions be used?
@@ -71,8 +71,8 @@ namespace MathsLib
 
 		/** Sets angular units used within the engine.
 		*/
-		static void setAngleUnit(ANGLE_UNIT _unit) {s_AngleUnit=_unit;}
-		static ANGLE_UNIT getAngleUnit() {return s_AngleUnit;}
+		static void setAngleUnit(AngleUnits _unit) {s_AngleUnit=_unit;}
+		static AngleUnits getAngleUnit() {return s_AngleUnit;}
 
 		/** Sets the trigonometry functions mode.
 			@param
@@ -262,27 +262,27 @@ namespace MathsLib
 	inline float Maths::fsin(float _angle)
 	{
 		if(m_bUseTables)
-			return (s_AngleUnit == ANGLE_DEGREE ? FastFloat::fsin(degToRad(_angle)) : FastFloat::fsin(_angle));
+			return (s_AngleUnit == AngleUnits::Degree ? FastFloat::fsin(degToRad(_angle)) : FastFloat::fsin(_angle));
 		else
-			return (s_AngleUnit == ANGLE_DEGREE ? sinf(degToRad(_angle)) : sinf(_angle));
+			return (s_AngleUnit == AngleUnits::Degree ? sinf(degToRad(_angle)) : sinf(_angle));
 	}
 
 	inline float Maths::fcos(float _angle)
 	{
 		if(m_bUseTables)
-			return (s_AngleUnit == ANGLE_DEGREE ? FastFloat::fcos(degToRad(_angle)) : FastFloat::fcos(_angle));
+			return (s_AngleUnit == AngleUnits::Degree ? FastFloat::fcos(degToRad(_angle)) : FastFloat::fcos(_angle));
 		else
-			return (s_AngleUnit == ANGLE_DEGREE ? cosf(degToRad(_angle)) : cosf(_angle));
+			return (s_AngleUnit == AngleUnits::Degree ? cosf(degToRad(_angle)) : cosf(_angle));
 	}
 
 	inline float Maths::ftan(float _angle)
 	{
-		return (s_AngleUnit == ANGLE_DEGREE ? tanf(degToRad(_angle)) : tanf(_angle));
+		return (s_AngleUnit == AngleUnits::Degree ? tanf(degToRad(_angle)) : tanf(_angle));
 	}
 
 	inline float Maths::fatan(float _angle)
 	{
-		return (s_AngleUnit == ANGLE_DEGREE ? atanf(degToRad(_angle)) : atanf(_angle));
+		return (s_AngleUnit == AngleUnits::Degree ? atanf(degToRad(_angle)) : atanf(_angle));
 	}
 
 	inline float Maths::fsqrt(float _num)

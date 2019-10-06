@@ -16,7 +16,7 @@ namespace Tests
 		TEST_METHOD(testSine)
 		{
 			float sineEps = 0.01f;
-			Maths::setAngleUnit(Maths::ANGLE_RADIAN);
+			Maths::setAngleUnit(Maths::AngleUnits::Radian);
 
 			Assert::IsTrue(fabs(Maths::fsin(0.0f)) < sineEps);
 			Assert::IsTrue(Maths::fsin(Maths::PI / 2) == 1.0f);
@@ -29,7 +29,7 @@ namespace Tests
 		TEST_METHOD(testCosine)
 		{
 			float sineEps = 0.01f;
-			Maths::setAngleUnit(Maths::ANGLE_RADIAN);
+			Maths::setAngleUnit(Maths::AngleUnits::Radian);
 
 			Assert::IsTrue(fabs(Maths::fcos(0.0f) - 1.0f) < sineEps);
 			Assert::IsTrue(fabs(Maths::fcos(Maths::PI / 2)) < sineEps);
