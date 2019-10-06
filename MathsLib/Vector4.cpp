@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Vector4.h"
 #include "Maths.h"
 #include "Vector2.h"
@@ -124,7 +128,7 @@ namespace MathsLib
 		FuncSplit <std::string> tokenizer;
 		tokenizer(_string, vecValues, " ,;");
 
-		if(vecValues.size() == 4)
+		if(vecValues.size() == 4) //-V112
 		{
 			auto iter = vecValues.begin();
 			x = atof((iter++)->c_str());
@@ -140,16 +144,6 @@ namespace MathsLib
 		buffer << x << " " << y << " " << z << " " << w;
 
 		return buffer.str();
-	}
-
-	Vector4& Vector4::operator=(const Vector4& _vec)
-	{
-		x = _vec.x;
-		y = _vec.y;
-		z = _vec.z;
-		w = _vec.w;
-
-		return (*this);
 	}
 
 	void Vector4::set(float _x, float _y, float _z, float _w)
@@ -378,13 +372,13 @@ namespace MathsLib
 
 	float Vector4::operator[](unsigned int i)
 	{
-		Assert(i < 4, "Vector dimension index not allowed");
+		Assert(i < 4, "Vector dimension index not allowed"); //-V112
 		return (vals[i]);
 	}
 
 	float Vector4::operator[](unsigned int i) const
 	{
-		Assert(i < 4, "Vector dimension index not allowed");
+		Assert(i < 4, "Vector dimension index not allowed"); //-V112
 		return (vals[i]);
 	}
 

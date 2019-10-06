@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Quaternion.h"
 #include "FuncSplit.h"
 #include "Matrix4x4.h"
@@ -107,7 +111,7 @@ namespace MathsLib
 		FuncSplit <std::string> tokenizer;
 		tokenizer(_string, vecValues, " ,;");
 
-		if(vecValues.size() == 4)
+		if(vecValues.size() == 4) //-V112
 		{
 			auto iter = vecValues.begin();
 			x = atof((iter++)->c_str());
@@ -218,7 +222,7 @@ namespace MathsLib
 		float len = length();
 
 		// Zero-length quaternion cannot be inverted
-		if (len == 0.0f)
+		if (Maths::floatEquals(len, 0.0f))
 			return;
 
 		Quaternion conj = (*this);
@@ -295,18 +299,14 @@ namespace MathsLib
 
 	bool Quaternion::operator==(const Quaternion& _quat)
 	{
-		return ((x == _quat.x) &&
-			(y == _quat.y) &&
-			(z == _quat.z) &&
-			(w == _quat.w));
+		return (Maths::floatEquals(x, _quat.x) && Maths::floatEquals(y, _quat.y) &&
+			Maths::floatEquals(z, _quat.z) && Maths::floatEquals(w, _quat.w));
 	}
 
 	bool Quaternion::operator!=(const Quaternion& _quat)
 	{
-		return ((x != _quat.x) ||
-			(y != _quat.y) ||
-			(z != _quat.z) ||
-			(w != _quat.w));
+		return (!Maths::floatEquals(x, _quat.x) || !Maths::floatEquals(y, _quat.y) ||
+			!Maths::floatEquals(z, _quat.z) || !Maths::floatEquals(w, _quat.w));
 	}
 
 	Quaternion slerp(const Quaternion& _quat1, const Quaternion& _quat2, float _t)
@@ -368,13 +368,13 @@ namespace MathsLib
 
 	float Quaternion::operator[](unsigned int i)
 	{
-		Assert(i < 4, "Quaternion dimension index not allowed");
+		Assert(i < 4, "Quaternion dimension index not allowed"); //-V112
 		return (q[i]);
 	}
 
 	float Quaternion::operator[](unsigned int i) const
 	{
-		Assert(i < 4, "Quaternion dimension index not allowed");
+		Assert(i < 4, "Quaternion dimension index not allowed"); //-V112
 		return (q[i]);
 	}
 

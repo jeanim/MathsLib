@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Matrix4x4.h"
 #include "FuncSplit.h"
 
@@ -78,7 +82,7 @@ namespace MathsLib
 		}
 		else
 		{
-			Matrix4x4 mat= (*this);
+			Matrix4x4 mat = (*this);
 			mat._m[0][0] = _m[0][0];
 			mat._m[0][1] = _m[1][0];
 			mat._m[0][2] = _m[2][0];
@@ -363,7 +367,7 @@ namespace MathsLib
 		float det = determinant();
 
 		// If cannot be inverted, exit
-		if (!det)
+		if (Maths::floatEquals(det, 0.0f))
 			return;
 
 		Matrix4x4 adjoin = adjoint();
@@ -755,10 +759,10 @@ namespace MathsLib
 
 	bool Matrix4x4::operator==(const Matrix4x4& _mat)
 	{
-		return (_m[0][0] == _mat[0][0] && _m[0][1] == _mat[0][1] && _m[0][2] == _mat[0][2] && _m[0][3] == _mat[0][3] &&
-			_m[1][0] == _mat[1][0] && _m[1][1] == _mat[1][1] && _m[1][2] == _mat[1][2] && _m[1][3] == _mat[1][3] &&
-			_m[2][0] == _mat[2][0] && _m[2][1] == _mat[2][1] && _m[2][2] == _mat[2][2] && _m[2][3] == _mat[2][3] &&
-			_m[3][0] == _mat[3][0] && _m[3][1] == _mat[3][1] && _m[3][2] == _mat[3][2] && _m[3][3] == _mat[3][3]);
+		for (int i = 0; i < 16; ++i)
+			if (!Maths::floatEquals(this->m[i], _mat.m[i])) return false;
+
+		return true;
 	}
 
 	float* Matrix4x4::getData()

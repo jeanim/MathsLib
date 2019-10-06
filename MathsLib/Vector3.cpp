@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Vector3.h"
 #include "FuncSplit.h"
 #include "Matrix3x3.h"
@@ -24,28 +28,28 @@ namespace MathsLib
 	const Vector3 Vector3::NEGATIVE_INFINITY_VECTOR(-1e9, -1e9, -1e9);
 
 
-	Vector3::Vector3():
+	Vector3::Vector3() :
 		x(0.0f),
 		y(0.0f),
 		z(0.0f)
 	{
 	}
 
-	Vector3::Vector3(float _x, float _y, float _z):
+	Vector3::Vector3(float _x, float _y, float _z) :
 		x(_x),
 		y(_y),
 		z(_z)
 	{
 	}
 
-	Vector3::Vector3(const Vector2& _vec):
+	Vector3::Vector3(const Vector2& _vec) :
 		x(_vec.x),
 		y(_vec.y),
 		z(0.0f)
 	{
 	}
 
-	Vector3::Vector3(const Vector2& _vec, float _z):
+	Vector3::Vector3(const Vector2& _vec, float _z) :
 		x(_vec.x),
 		y(_vec.y),
 		z(_z)
@@ -120,15 +124,6 @@ namespace MathsLib
 		buffer << x << " " << y << " " << z;
 
 		return buffer.str();
-	}
-
-	Vector3& Vector3::operator=(const Vector3& _vec)
-	{
-		x = _vec.x;
-		y = _vec.y;
-		z = _vec.z;
-
-		return (*this);
 	}
 
 	void Vector3::set(float _x, float _y, float _z)

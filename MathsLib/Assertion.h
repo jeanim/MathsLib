@@ -7,7 +7,7 @@
 
 
 /// Custom assert macro, where a is condition and b error description
-#define Assert(a, b) assert(a && b)
+#define Assert(a, b) assert((a) && (b))
 
 
 #endif

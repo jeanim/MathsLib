@@ -35,8 +35,6 @@ namespace MathsLib
 		explicit Point(float _x, float _y, float _z);
 		~Point();
 
-		Point& operator=(const Point& _point);
-
 		/// Sets the new member values.
 		void set(float _x, float _y, float _z);
 		/// Sets the new member values.

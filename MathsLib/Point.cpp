@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Point.h"
 #include "FuncSplit.h"
 
@@ -54,15 +58,6 @@ namespace MathsLib
 			y = atof((iter++)->c_str());
 			z = atof((iter++)->c_str());
 		}
-	}
-
-	Point& Point::operator=(const Point& _point)
-	{
-		x = _point.x;
-		y = _point.y;
-		z = _point.z;
-
-		return (*this);
 	}
 
 	void Point::set(float _x, float _y, float _z)

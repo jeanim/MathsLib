@@ -315,5 +315,20 @@ namespace Tests
 			Assert::AreEqual(3.0f, result.x);
 			Assert::AreEqual(3.0f, result.y);
 		}
+
+		TEST_METHOD(floatEquals_Expected_True) {
+			Assert::IsTrue(Maths::floatEquals(0.0f, 0.0f));
+			Assert::IsTrue(Maths::floatEquals(0.0f, 0.00000001f));
+			Assert::IsTrue(Maths::floatEquals(0.0f, -0.00000001f));
+			Assert::IsTrue(Maths::floatEquals(1.0f, 1.0f));
+		}
+
+		TEST_METHOD(floatEquals_Expected_False) {
+			Assert::IsFalse(Maths::floatEquals(0.0f, 0.1f));
+			Assert::IsFalse(Maths::floatEquals(0.0f, -0.1f));
+			Assert::IsFalse(Maths::floatEquals(0.0f, 0.0001f));
+			Assert::IsFalse(Maths::floatEquals(0.0f, -0.0001f));
+			Assert::IsFalse(Maths::floatEquals(1.0f, -1.0f));
+		}
 	};
 }

@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Matrix3x3.h"
 #include "FuncSplit.h"
 
@@ -99,7 +103,7 @@ namespace MathsLib
 		float det = determinant();
 
 		// If cannot be inverted, exit
-		if (!det)
+		if (Maths::floatEquals(det, 0.0f))
 			return;
 
 		Matrix3x3 adjoin = adjoint();
@@ -466,9 +470,10 @@ namespace MathsLib
 
 	bool Matrix3x3::operator==(const Matrix3x3& _mat)
 	{
-		return (_m[0][0] == _mat[0][0] && _m[0][1] == _mat[0][1] && _m[0][2] == _mat[0][2] &&
-			_m[1][0] == _mat[1][0] && _m[1][1] == _mat[1][1] && _m[1][2] == _mat[1][2] &&
-			_m[2][0] == _mat[2][0] && _m[2][1] == _mat[2][1] && _m[2][2] == _mat[2][2]);
+		for (int i = 0; i < 9; ++i)
+			if (!Maths::floatEquals(this->m[i], _mat.m[i])) return false;
+
+		return true;
 	}
 
 	float* Matrix3x3::getData()

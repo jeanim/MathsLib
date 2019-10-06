@@ -48,8 +48,6 @@ namespace MathsLib
 		explicit Vector2(float _x=0.0f, float _y=0.0f);
 		~Vector2();
 
-		Vector2& operator=(const Vector2& _vec);
-
 		/// Lets you set new members' values.
 		void set(float _x, float _y);
 		/// Lets you set new members' values.

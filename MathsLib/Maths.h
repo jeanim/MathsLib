@@ -69,6 +69,8 @@ namespace MathsLib
 		*/
 		static int floatCompare(float _value1, float _value2);
 
+		static bool floatEquals(float value1, float value2);
+
 		/** Sets angular units used within the engine.
 		*/
 		static void setAngleUnit(AngleUnits _unit) {s_AngleUnit=_unit;}
@@ -224,7 +226,7 @@ namespace MathsLib
 	template <typename T>
 	T Maths::catmullRomInterpolation(const std::vector<T>& points, float t)
 	{
-		if (t < 0.0f || t > 1.0f || points.size() != 4)
+		if (t < 0.0f || t > 1.0f || points.size() != 4) //-V112
 			return T(0.0f);
 
 		T P0 = points[0];
@@ -247,6 +249,10 @@ namespace MathsLib
 			return 0;
 		else
 			return (val > 0.0f ? 1 : -1);
+	}
+
+	inline bool Maths::floatEquals(float value1, float value2) {
+		return (fabs(value1 - value2) < FloatEpsilon);
 	}
 
 	inline float Maths::degToRad(float _angle)

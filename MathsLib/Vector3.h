@@ -63,8 +63,6 @@ namespace MathsLib
 		explicit Vector3(const Vector2& _vec, float _z);
 		~Vector3();
 
-		Vector3& operator=(const Vector3& _vec);
-
 		/// Lets you set new members' values.
 		void set(float _x, float _y, float _z);
 		/// Lets you set new members' values.

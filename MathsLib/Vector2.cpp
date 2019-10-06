@@ -1,3 +1,7 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 #include "Vector2.h"
 #include "FuncSplit.h"
 
@@ -50,14 +54,6 @@ namespace MathsLib
 		buffer << x << " " << y;
 
 		return buffer.str();
-	}
-
-	Vector2& Vector2::operator=(const Vector2& _vec)
-	{
-		x = _vec.x;
-		y = _vec.y;
-
-		return (*this);
 	}
 
 	void Vector2::set(float _x, float _y)

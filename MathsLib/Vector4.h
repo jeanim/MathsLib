@@ -68,8 +68,6 @@ namespace MathsLib
 		explicit Vector4(const Quaternion& _quat);
 		~Vector4();
 
-		Vector4& operator=(const Vector4& _vec);
-
 		/// Lets you set new members' values.
 		void set(float _x, float _y, float _z, float _w);
 		/// Lets you set new members' values.
