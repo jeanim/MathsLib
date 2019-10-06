@@ -37,14 +37,11 @@ namespace MathsLib
 			ANGLE_RADIAN						///< Radians
 		};
 
-		static const float FloatEpsilon;			///< Epsilon to compare float values
+		static constexpr float FloatEpsilon=0.000001f;			///< Epsilon to compare float values
 
-		static const float PI;					///< PI number
-		static const float PI_DOUBLE;			///< PI * 2
-		static const float PI_HALF;				///< PI / 2
-		static const float Infinity;				/**< Infinity. Yes - it has a numerical
-													 value, and is pretty small */
-		static const float MinusInfinity;		///< Minus infinity
+		static constexpr float PI = 3.14159265f;
+		static constexpr float PI_DOUBLE = PI * 2.0f;
+		static constexpr float PI_HALF = PI * 0.5f;
 
 	private:
 		static ANGLE_UNIT s_AngleUnit;			///< Degrees/Radians
@@ -52,8 +49,8 @@ namespace MathsLib
 		static bool m_bUseTables;				///< Should trigonometry tables be used?
 		static bool m_bUseSSE;					///< Should SSE extensions be used?
 
-		static const float m_kDegToRad;
-		static const float m_kRadToDeg;
+		static constexpr float m_kDegToRad = PI_DOUBLE / 360.0f;
+		static constexpr float m_kRadToDeg = 180.0f / PI;
 
 	public:
 		Maths()=delete;
