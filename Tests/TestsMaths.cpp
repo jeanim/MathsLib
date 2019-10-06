@@ -39,7 +39,12 @@ namespace Tests
 			Assert::IsTrue(fabs(Maths::fcos(Maths::PI * 4) - 1.0f) < sineEps);
 		}
 
-		TEST_METHOD(testSqrt)
+		TEST_METHOD(testSqrt_Smaller_Than_1)
+		{
+			Assert::AreEqual(0.5f, Maths::fsqrt(0.25f));
+		}
+
+		TEST_METHOD(testSqrt_Greater_Than_1)
 		{
 			Assert::AreEqual(1.0f, Maths::fsqrt(1.0f));
 			Assert::AreEqual(2.0f, Maths::fsqrt(4.0f));
