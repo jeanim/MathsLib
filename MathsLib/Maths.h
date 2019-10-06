@@ -43,11 +43,7 @@ namespace MathsLib
 	public:
 		Maths()=delete;
 
-		/** Sets if SSE should be used or not.
-			@param _value if set to 1 then SSE is used. In other case - not.
-		*/
 		static void setUseSSE(bool _value) {m_bUseSSE=_value;}
-		/// Checks if SSE is used.
 		static bool isUsingSSE() {return m_bUseSSE;}
 
 		/** Safe compare of two floating point values.
@@ -59,8 +55,7 @@ namespace MathsLib
 
 		static bool floatEquals(float value1, float value2);
 
-		/** Sets angular units used within the engine.
-		*/
+
 		static void setAngleUnit(AngleUnits _unit) {s_AngleUnit=_unit;}
 		static AngleUnits getAngleUnit() {return s_AngleUnit;}
 
