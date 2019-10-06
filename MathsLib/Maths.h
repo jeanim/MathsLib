@@ -56,8 +56,7 @@ namespace MathsLib
 		static const float m_kRadToDeg;
 
 	public:
-		Maths();
-		~Maths();
+		Maths()=delete;
 
 		/** Sets if SSE should be used or not.
 			@param _value if set to 1 then SSE is used. In other case - not.

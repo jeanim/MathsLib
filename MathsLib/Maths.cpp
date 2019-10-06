@@ -21,13 +21,4 @@ namespace MathsLib
 	const float Maths::m_kDegToRad = PI_DOUBLE / 360.0f;
 	const float Maths::m_kRadToDeg = 180.0f / PI;
 
-
-	Maths::Maths()
-	{
-	}
-	
-	Maths::~Maths()
-	{
-	}
-
 }
