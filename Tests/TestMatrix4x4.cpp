@@ -48,6 +48,26 @@ namespace Tests
 			Assert::IsTrue(mat.isZero());
 		}
 
+		TEST_METHOD(testEquality_Expected_True)
+		{
+			Matrix4x4 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+			Matrix4x4 mat2{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+			Assert::IsTrue(mat1 == mat2);
+			mat1 = mat2;
+			Assert::IsTrue(mat1 == mat2);
+		}
+
+		TEST_METHOD(testEquality_Expected_False)
+		{
+			Matrix4x4 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+			Matrix4x4 mat2{ 2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+			Assert::IsFalse(mat1 == mat2);
+			mat2.identity();
+			Assert::IsFalse(mat1 == mat2);
+		}
+
 		TEST_METHOD(testNegate)
 		{
 			Matrix4x4 mat(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -97,6 +117,14 @@ namespace Tests
 		TEST_METHOD(testTranspose)
 		{
 			Matrix4x4 mat(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+			mat.transpose();
+			Assert::IsTrue(mat == Matrix4x4(1, 5, 9, 13,
+				2, 6, 10, 14,
+				3, 7, 11, 15,
+				4, 8, 12, 16));
+
+			Maths::setUseSSE(true);
+			mat = Matrix4x4{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
 			mat.transpose();
 			Assert::IsTrue(mat == Matrix4x4(1, 5, 9, 13,
 				2, 6, 10, 14,

@@ -103,7 +103,7 @@ namespace MathsLib
 			mat._m[3][2] = _m[2][3];
 			mat._m[3][3] = _m[3][3];
 
-			(*this) = mat;
+			(*this) = std::move(mat);
 		}
 	}
 
@@ -487,7 +487,7 @@ namespace MathsLib
 		mat[3][3] = _m[3][0] * _matrix[0][3] + _m[3][1] * _matrix[1][3] +
 			_m[3][2] * _matrix[2][3] + _m[3][3] * _matrix[3][3];
 
-		(*this) = mat;
+		(*this) = std::move(mat);
 	}
 	//---------------------------------------------------------------------
 	Matrix4x4 multiply(const Matrix4x4& _mat1, const Matrix4x4& _mat2)

@@ -60,6 +60,33 @@ namespace Tests
 			Assert::IsTrue(!mat.isZero());
 		}
 
+		TEST_METHOD(testEquality_Expected_True)
+		{
+			Matrix3x3 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			Matrix3x3 mat2{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			Assert::IsTrue(mat1 == mat2);
+			mat1 = mat2;
+			Assert::IsTrue(mat1 == mat2);
+		}
+
+		TEST_METHOD(testEquality_Expected_False)
+		{
+			Matrix3x3 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			Matrix3x3 mat2{ 2, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			Assert::IsFalse(mat1 == mat2);
+			mat2.identity();
+			Assert::IsFalse(mat1 == mat2);
+		}
+
+		TEST_METHOD(testTranspose)
+		{
+			Matrix3x3 mat{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			mat.transpose();
+			Assert::IsTrue(mat == Matrix3x3{ 1, 4, 7, 2, 5, 8, 3, 6, 9 });
+		}
+
 		TEST_METHOD(testMultiplicationByIdentityMatrix_Expected_Same)
 		{
 			Matrix3x3 mat1{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };

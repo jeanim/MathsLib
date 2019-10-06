@@ -155,7 +155,7 @@ namespace MathsLib
 		mat._m[2][1] = _m[1][2];
 		mat._m[2][2] = _m[2][2];
 
-		(*this) = mat;
+		(*this) = std::move(mat);
 	}
 
 	void Matrix3x3::add(const Matrix3x3& _mat)
@@ -213,7 +213,7 @@ namespace MathsLib
 		mat[2][2] = _m[2][0] * _matrix[0][2] + _m[2][1] * _matrix[1][2] +
 			_m[2][2] * _matrix[2][2];
 
-		(*this) = mat;
+		(*this) = std::move(mat);
 	}
 	//---------------------------------------------------------------------
 	void Matrix3x3::multiply(const float& _number)
