@@ -15,6 +15,11 @@
 
 namespace MathsLib
 {
+	// Some typedefs
+	//typedef Matrix4x4 Matrix4;				///< Just simplified class name
+	//typedef Matrix3x3 Matrix3;				///< Just simplified class name
+
+
 	/** Represents mathematical calculations and algorithms.
 		@remarks
 			Vast majority of functions of this class are marked
